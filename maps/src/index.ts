@@ -5,6 +5,8 @@ import { CustomMap } from './CustomMap';
 const mapDiv: HTMLElement | null = document.getElementById('map');
 
 const user = new User();
+const company = new Company();
 const customMap = new CustomMap(mapDiv);
 
 customMap.addUserMarker(user);
+customMap.addCompanyMarker(company);
