@@ -4,4 +4,7 @@ import { CustomMap } from './CustomMap';
 
 const mapDiv: HTMLElement | null = document.getElementById('map');
 
-new CustomMap(mapDiv);
+const user = new User();
+const customMap = new CustomMap(mapDiv);
+
+customMap.addUserMarker(user);
