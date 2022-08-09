@@ -23066,6 +23066,10 @@ function () {
     };
   }
 
+  User.prototype.markerContent = function () {
+    return "".concat(this.name);
+  };
+
   return User;
 }();
 
@@ -23091,6 +23095,10 @@ function () {
       lng: parseFloat(faker_1.faker.address.longitude())
     };
   }
+
+  Company.prototype.markerContent = function () {
+    return "\n            <div>\n                <h1>".concat(this.companyName, "</h1>\n                <h3>").concat(this.catchPhrase, "</h3>\n            </div>\n        ");
+  };
 
   return Company;
 }();
@@ -23118,12 +23126,21 @@ function () {
   }
 
   CustomMap.prototype.addMarker = function (mappable) {
-    new google.maps.Marker({
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
+    });
+    var infoWindow = new google.maps.InfoWindow({
+      content: mappable.markerContent()
+    });
+    marker.addListener('click', function () {
+      infoWindow;
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
@@ -23178,7 +23195,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50705" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51018" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
