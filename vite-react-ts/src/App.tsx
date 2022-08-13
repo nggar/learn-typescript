@@ -3,6 +3,7 @@ import React from 'react';
 import { fetchCharacter } from './api';
 // Components
 import Card from './components/Card';
+import Item from './components/Item';
 // context hook
 import { useCharacterId } from './components/Context';
 // Types
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             name={character.name}
             imgUrl={character.img_url}
           />
+          <Item item={character} onClick={(item) => console.log(item.origin)} />
           <input type="text" ref={inputRef} />
           <button onClick={handleMouseClick}>Get Character</button>
         </>
