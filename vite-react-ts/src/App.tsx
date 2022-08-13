@@ -11,6 +11,8 @@ import { Character } from './api';
 import { Wrapper } from './App.styles';
 
 const App: React.FC = () => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
   const [character, setCharacter] = React.useState<Character>({} as Character);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -27,6 +29,10 @@ const App: React.FC = () => {
     fetchFromApi();
   }, [characterId]);
 
+  const handleMouseClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    setCharacterId(Number(inputRef.current?.value));
+  };
+
   return (
     <Wrapper characterId={characterId}>
       {isLoading ? (
@@ -38,9 +44,8 @@ const App: React.FC = () => {
             name={character.name}
             imgUrl={character.img_url}
           />
-          <button onClick={() => setCharacterId(Math.floor(Math.random() * 10) + 1)}>
-            Random Character
-          </button>
+          <input type="text" ref={inputRef} />
+          <button onClick={handleMouseClick}>Get Character</button>
         </>
       )}
     </Wrapper>
