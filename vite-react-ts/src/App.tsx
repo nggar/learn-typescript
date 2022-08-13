@@ -31,6 +31,7 @@ const App: React.FC = () => {
   }, [characterId]);
 
   const handleMouseClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    console.log(e.currentTarget);
     setCharacterId(Number(inputRef.current?.value));
   };
 
